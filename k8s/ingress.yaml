@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lr-model-api
+  namespace: ml-serving
+  annotations:
+    # Works with nginx ingress controller (default on most free clusters)
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: lr-mlops.example.com  # Replace with your domain or use nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lr-model-api
+                port:
+                  number: 80

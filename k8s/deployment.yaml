@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lr-model-api
+  namespace: ml-serving
+  labels:
+    app: lr-model-api
+    app.kubernetes.io/name: lr-model-api
+    app.kubernetes.io/part-of: lr-mlops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lr-model-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: lr-model-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/YOUR_USERNAME/linear-regression-mlops:latest
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

@@ -1,0 +1,44 @@
+project:
+  name: "linear-regression-mlops"
+  version: "1.0.0"
+
+data:
+  raw_path: "data/raw"
+  processed_path: "data/processed"
+  test_size: 0.2
+  random_state: 42
+  # Using sklearn's California Housing dataset as demo
+  source: "california_housing"
+
+features:
+  numerical:
+    - MedInc
+    - HouseAge
+    - AveRooms
+    - AveBedrms
+    - Population
+    - AveOccup
+    - Latitude
+    - Longitude
+  scaling: "standard"  # standard | minmax | none
+
+model:
+  type: "linear_regression"
+  hyperparameters:
+    fit_intercept: true
+  # Alternative: Ridge regression
+  # type: "ridge"
+  # hyperparameters:
+  #   alpha: 1.0
+  #   fit_intercept: true
+
+training:
+  experiment_name: "linear_regression_california"
+  mlflow_tracking_uri: "http://localhost:5000"
+  artifact_path: "models"
+
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  model_path: "models/model.joblib"
+  metadata_path: "models/metadata.json"

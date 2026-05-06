@@ -1,0 +1,12 @@
+# Render.com Blueprint - deploy with "New > Blueprint Instance"
+services:
+  - type: web
+    name: lr-mlops-api
+    runtime: docker
+    dockerfilePath: docker/Dockerfile.serve
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000

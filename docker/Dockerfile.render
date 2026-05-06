@@ -1,0 +1,27 @@
+# Multi-stage build: train then serve (for platforms like Render)
+# This trains the model at build time so no pre-existing artifacts needed
+
+FROM python:3.11-slim AS trainer
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ src/
+COPY configs/ configs/
+RUN mkdir -p models && python -m src.models.train
+
+# --- Production stage ---
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ src/
+COPY configs/ configs/
+COPY --from=trainer /app/models/ models/
+
+EXPOSE 8000
+
+CMD ["uvicorn", "src.serving.app:app", "--host", "0.0.0.0", "--port", "8000"]

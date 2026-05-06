@@ -25,6 +25,7 @@ spec:
       containers:
         - name: api
           image: ghcr.io/sanjeevranjaniitb/lr-mlops-e2e:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
               protocol: TCP

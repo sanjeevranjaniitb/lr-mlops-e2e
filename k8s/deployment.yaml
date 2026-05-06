@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/YOUR_USERNAME/linear-regression-mlops:latest
+          image: ghcr.io/sanjeevranjaniitb/lr-mlops-e2e:latest
           ports:
             - containerPort: 8000
               protocol: TCP

@@ -26,7 +26,7 @@ jobs:
 
       - name: Update image tag in deployment
         run: |
-          sed -i "s|ghcr.io/YOUR_USERNAME/linear-regression-mlops:latest|ghcr.io/${{ github.repository }}:${{ github.sha }}|g" k8s/deployment.yaml
+          sed -i "s|ghcr.io/sanjeevranjaniitb/lr-mlops-e2e:latest|ghcr.io/${{ github.repository }}:${{ github.sha }}|g" k8s/deployment.yaml
 
       - name: Deploy to Kubernetes
         run: |

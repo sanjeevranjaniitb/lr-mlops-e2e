@@ -1,4 +1,4 @@
-#  Linear Regression MLOps Pipeline : Complete Guide
+# MLOps Pipeline : Complete Guide
 
 > **A production-grade Machine Learning project that teaches the ENTIRE MLOps lifecycle — from wiring your model to deploying it with Docker, CI/CD, and serving predictions via API.**
 

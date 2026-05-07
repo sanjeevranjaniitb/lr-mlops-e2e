@@ -1,10 +1,6 @@
-#  Linear Regression MLOps Pipeline — Complete Guide
+#  Linear Regression MLOps Pipeline : Complete Guide
 
-> **A production-grade Machine Learning project that teaches you the ENTIRE MLOps lifecycle — from writing your first model to deploying it with Docker, CI/CD, and serving predictions via API.**
-
-If you're someone who wants to understand how ML models go from Jupyter notebooks to production systems that serve millions of requests — this is your one-stop project.
-
----
+> **A production-grade Machine Learning project that teaches the ENTIRE MLOps lifecycle — from wiring your model to deploying it with Docker, CI/CD, and serving predictions via API.**
 
 ## 📖 Table of Contents
 
